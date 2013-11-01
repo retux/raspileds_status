@@ -1,4 +1,4 @@
-Rasberry Leds Status software is licensed under GNU General Public License v2
+Raspberry Leds Status software is licensed under GNU General Public License v2
 
 The full license can be found at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
