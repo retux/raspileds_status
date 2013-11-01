@@ -1,0 +1,32 @@
+### BEGIN INIT INFO
+# Provides:          raspiledsts
+# Required-Start:    $locale_fs $syslog
+# Required-Stop:     $locale_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start raspiled monitoring led daemon at boot time
+# Description:       Enable service to monitor network status and ready led for raspberry pi.
+### END INIT INFO
+
+#!/bin/sh
+
+case "$1" in
+  start)
+    echo "Starting script raspiledsts "
+    cd /usr/bin
+    ./netifledwatch -i eth0 -d
+    ;;
+  stop)
+    echo "Stopping script raspiledsts"
+    for i in `pidof netifledwatch`
+	do
+		kill -2 $i
+	done
+    ;;
+  *)
+    echo "Usage: /etc/init.d/raspiledsts {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0

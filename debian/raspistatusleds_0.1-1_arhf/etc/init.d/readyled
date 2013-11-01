@@ -1,0 +1,28 @@
+### BEGIN INIT INFO
+# Provides:          readyled
+# Required-Start:    $locale_fs $syslog
+# Required-Stop:     $locale_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Turn raspiled ready on/off at boot time
+# Description:       RaspiLed ready (GPIO pin 17) indicates system has finished boot process.
+### END INIT INFO
+
+#!/bin/sh
+
+case "$1" in
+  start)
+    echo "Turning on ready LED "
+    /usr/bin/gpiopinctrl 17 1
+    ;;
+  stop)
+    echo "Turning off ready LED"
+    /usr/bin/gpiopinctrl 17 0
+    ;;
+  *)
+    echo "Usage: /etc/init.d/raspiledsts {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0

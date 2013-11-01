@@ -1,0 +1,6 @@
+98f0cb822941c69302823ccf52bfd584  etc/init.d/raspiledsts
+9273dd7ab4d4ed06298f618071413fb4  etc/init.d/readyled
+452946965c1ed95d2c0366b9e4abadd1  usr/share/doc/raspistatusleds/copyright
+6f77e83421ac31f3a4b6542d99910591  usr/share/man/man8/raspistatusleds.8.gz
+9eae60e843fe09c3afe4ee74aad02dba  usr/bin/netifledwatch
+5a01f17df1e144c5d3a36e55414c3db0  usr/bin/gpiopinctrl

@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+if [ "$1" = "remove" ]; then
+	update-rc.d -f raspiledsts remove
+	update-rc.d -f readyled remove
+fi
+exit 0
+~                                      

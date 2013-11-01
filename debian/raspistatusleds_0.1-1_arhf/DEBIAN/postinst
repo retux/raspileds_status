@@ -1,0 +1,6 @@
+#!/bin/sh
+update-rc.d raspiledsts defaults
+update-rc.d readyled defaults
+exit 0
+
+
