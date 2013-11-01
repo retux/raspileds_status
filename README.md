@@ -21,3 +21,5 @@ readyled is a SysV init script used to simply actiate "ready" led on, in this ca
 pin 17.
 
 A Raspbian package is include in debian directory.
+
+For building, see README.TXT

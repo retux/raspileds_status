@@ -1,3 +1,16 @@
+Build:
+
+make or make all target will built netifledwatch gpiopinctrl gpioctrl.
+
+There's no install target, so just copy binaries to their destination:
+
+/usr/local/bin for netifledwatch, gpiopinctrl, gpioctrl.
+
+And:
+
+/etc/init.d/ for raspiledsts SysV init script.
+
+If don't want to build yourself, theres a .deb package included.
 
 
 Usage notes:
@@ -17,6 +30,4 @@ libstdc++6:armhf	(>= 4.7)
 libc6:armhf		(>= 2.13)
 libgcc1:armhf		(>= 1.4)
 
-Debian package build for Raspbian Wheezy (Debian arch armhf). TODO: some improvements are needed to .deb to
-comply Debian package building rules.
 
