@@ -1,11 +1,6 @@
 /**********************************************************************************************/
 /*** netifwatch.cpp 	   								    ***/
-/*** Reads sysfs to parse network interface status an do something interesting(?) with that ***/
-/*** piece of info.									    ***/
-/*** Info is read for example from: /sys/class/net/eth0/carrier file, where eth0 is de if.  ***/
-/*** This program is a client which uses GPIOClass(es) designed by Hussam Al-Hertani 	    ***/
-/*** 	https://github.com/halherta/RaspberryPi-GPIOClass-v1				    ***/
-/*** 	More info about see: GPIOClass.h						    ***/
+/*** Reads ethernet carrier status and act upon led status  ***/
 /*** Author: MGR (retux) 								    ***/
 /***											    ***/
 /*** License: GPL									    ***/
@@ -14,6 +9,10 @@
 /*** Important GPIO4 is used as output, meaning 0 is network interface out, 1 for ok.	    ***/
 /*** Remember: this program need to be run as root.					    ***/
 /**********************************************************************************************/
+// Use following commands to install prerequisites and build
+// sudo apt install gpiod
+// sudo apt install libgpiod-dev
+// g++ -Wall -o gpio gpip.cpp -lgpiodcxx
 
 
 #include <iostream>
@@ -22,9 +21,9 @@
 #include <cstring>
 #include <cstdlib>
 #include <sstream>
-#include "GPIOClass.h"
 #include <signal.h>
 #include <errno.h>
+#include <gpiod.hpp>
 // For daemonizing
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -43,7 +42,7 @@ bool ctrl_c_pressed = false;
 
 int main ( int argc, char* argv[] ) 
 {
-	const string VERSION = "0.1.0";
+	const string VERSION = "0.2.0";
 	std::string myInterface = "";
 
 	//std::cout << "Debug argc=" << argc << endl;
@@ -247,12 +246,17 @@ void daemonstart (string ifname)
 	        }
 
 
+    // Set up GPIO
+	::gpiod::chip chip("gpiochip0");
 
-	GPIOClass* gpio4 = new GPIOClass(PINOUTUSED);
+    auto line = chip.get_line(4);  // GPIO17
+    line.request({"example", gpiod::line_request::DIRECTION_OUTPUT, 0},0);
+
+	//GPIOClass* gpio4 = new GPIOClass(PINOUTUSED);
 	// "Exports" PINOUTUSED for using
-	gpio4->export_gpio();
+	//gpio4->export_gpio();
 	// Set PINOUTUSED direction
-	gpio4->setdir_gpio("out");
+	//gpio4->setdir_gpio("out");
 
 	//gpio4->setval_gpio("1");
 	//sleep(2);
@@ -262,11 +266,11 @@ void daemonstart (string ifname)
 		{
 			if ( getifstatus (ifname) == 1 )
 				{
-					gpio4->setval_gpio("1");
-				}
+					line.set_value(1);
+   				}
 			else
 				{
-					gpio4->setval_gpio("0");
+					 line.set_value(0);
 				}
 
 			// SIGNAL handling stuff
@@ -274,11 +278,11 @@ void daemonstart (string ifname)
 				{
 					std::cout << "SIGINT received." << endl;
 					std::cout << "unexporting pins." << endl;
-					gpio4->setval_gpio("0");
-					gpio4->unexport_gpio();
+					line.set_value(0);
+					line.release();
 					std::cout << "deallocating GPIO Objects." << endl;
-					delete gpio4;
-					gpio4 = NULL;
+					delete line;
+					line = NULL;
 					break;		// descomentar cuando este el loop
 				}
 			usleep (500000); 	// half a second nap

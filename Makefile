@@ -1,16 +1,15 @@
 ## VARS DE ENTORNO
 CC = g++
-CXXFLAGS := -Wall
+CXXFLAGS := -Wall -lgpiodcxx
 #CXXFLAGS := -I/usr/include/cryptopp -I/usr/include/crypto++ -Wall
 LDFLAGS :=
 #LDFLAGS := -L/usr/lib -lcryptopp -lpthread
 ### EOF VARS ENTORNO
 
 # OBJECT FILES DEFS.
-netifledwatch_objects = GPIOClass.o netifledwatch.o 
-testmainbundle_objects = GPIOClass.o testmainbundle.o 
-gpiopinctrl_objects = GPIOClass.o gpiopinctrl.o 
-gpioctrl_objects = GPIOClass.o gpioctrl.o
+netifledwatch_objects = netifledwatch.o 
+#gpiopinctrl_objects = GPIOClass.o gpiopinctrl.o 
+#gpioctrl_objects = GPIOClass.o gpioctrl.o
 
 # TARGETS
 all: netifledwatch gpiopinctrl gpioctrl
