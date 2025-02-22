@@ -29,7 +29,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-using namespace std;
+//using namespace std;
 
 void printHelp(char*);
 void daemonstart(string);
@@ -241,7 +241,7 @@ void daemonstart (string ifname)
 
         if (sigaction(SIGINT, &sig_struct, NULL) == -1)
 		{
-                	cout << "Problem with sigaction" << endl;
+                	std::cout << "Problem with sigaction" << endl;
 	                exit(1);
 	        }
 
