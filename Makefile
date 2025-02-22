@@ -1,8 +1,8 @@
 ## VARS DE ENTORNO
 CC = g++
-CXXFLAGS := -Wall -lgpiodcxx
+CXXFLAGS := -Wall -lgpiodcxx 
 #CXXFLAGS := -I/usr/include/cryptopp -I/usr/include/crypto++ -Wall
-LDFLAGS :=
+LDFLAGS := 
 #LDFLAGS := -L/usr/lib -lcryptopp -lpthread
 ### EOF VARS ENTORNO
 
@@ -15,7 +15,8 @@ netifledwatch_objects = netifledwatch.o
 all: netifledwatch gpiopinctrl gpioctrl
 
 netifledwatch: $(netifledwatch_objects)
-	$(CC) $(CXXFLAGS) $(LDFLAGS) -o netifledwatch $(netifledwatch_objects) 
+	#$(CC) $(CXXFLAGS) $(LDFLAGS) -o netifledwatch $(netifledwatch_objects) 
+	$(CC) -o netifledwatch $(netifledwatch_objects) $(CXXFLAGS) $(LDFLAGS) 
 
 gpiopinctrl: $(gpiopinctrl_objects)
 	$(CC) $(CXXFLAGS) $(LDFLAGS) -o gpiopinctrl $(gpiopinctrl_objects) 
