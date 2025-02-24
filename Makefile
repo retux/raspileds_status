@@ -12,22 +12,10 @@ netifledwatch_objects = netifledwatch.o
 #gpioctrl_objects = GPIOClass.o gpioctrl.o
 
 # TARGETS
-all: netifledwatch gpiopinctrl gpioctrl
+all: netifledwatch 
 
 netifledwatch: $(netifledwatch_objects)
-	#$(CC) $(CXXFLAGS) $(LDFLAGS) -o netifledwatch $(netifledwatch_objects) 
 	$(CC) -o netifledwatch $(netifledwatch_objects) $(CXXFLAGS) $(LDFLAGS) 
-
-gpiopinctrl: $(gpiopinctrl_objects)
-	$(CC) $(CXXFLAGS) $(LDFLAGS) -o gpiopinctrl $(gpiopinctrl_objects) 
-
-gpioctrl: $(gpioctrl_objects)
-	$(CC) $(CXXFLAGS) $(LDFLAGS) -o gpioctrl $(gpioctrl_objects) 
-
-testmainbundle: $(testmainbundle_objects)
-	$(CC) $(CXXFLAGS) $(LDFLAGS) -o testmainbundle $(testmainbundle_objects) 
-
-
 
 clean:
 	rm -f *.o

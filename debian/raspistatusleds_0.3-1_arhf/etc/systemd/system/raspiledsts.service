@@ -1,0 +1,15 @@
+[Unit]
+Description=Raspberry Pi network status LEDs
+After=network.target 
+
+[Service]
+Type=simple
+WorkingDirectory=/usr/bin
+ExecStart=/usr/bin/netifledwatch -i eth0 -d
+StandardOutput=journal
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
+Alias=raspiledsts.service
+

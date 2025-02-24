@@ -1,10 +1,10 @@
 Build:
 
-make or make all target will built netifledwatch gpiopinctrl gpioctrl.
+make or make all target will built netifledwatch.
 
 There's no install target, so just copy binaries to their destination:
 
-/usr/local/bin for netifledwatch, gpiopinctrl, gpioctrl.
+/usr/local/bin for netifledwatch.
 
 And:
 

@@ -1,0 +1,13 @@
+[Unit]
+Description=Set power led to 1 when system boots 
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/gpioset gpiochip0 17=1
+ExecStop= /usr/bin/gpioset gpiochip0 17=0
+RemainAfterExit=true
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target

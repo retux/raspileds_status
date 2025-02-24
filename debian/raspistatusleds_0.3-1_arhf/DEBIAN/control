@@ -1,9 +1,9 @@
 Package: raspistatusleds
-Version: 0.2-1
+Version: 0.3-1
 Architecture: armhf
 Maintainer: Matias Gutierrez Reto (Retux) <matiasgutierrezreto@gmail.com>
 Installed-Size: 90
-Depends: raspi-copies-and-fills, libstdc++6 (>= 0.3), libc6 (>= 2.10), libgcc1 (>= 1.4)
+Depends: raspi-copies-and-fills, libstdc++6 (>= 0.3), libc6 (>= 2.10), libgcc1 (>= 1.4), gpiod
 Section: misc
 Priority: extra
 Homepage: http://www.equiscentrico.com.ar
@@ -13,7 +13,7 @@ Description: Raspberry Pi status leds control
  GPIO pin 4 was chosen to network state led (suggested Amber), and GPIO pin 17
  for Ready LED (suggested Green or bicolor Red/Green). When Pi finishs booting
  status pin (17) goes high. 
- gpiopinctrl turn direction of a given GPIO pin to "out" and turn the pin on
- or off (1/0) using sysfs.
+ This version was updated to use gpiod package as sysfs was deprecated. Also
+ systemd is used instead of sysv init scripts.
  See man page for more info about it.
 
